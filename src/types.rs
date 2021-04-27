@@ -28,6 +28,12 @@ where
 #[derive(Debug, Eq, PartialEq, Hash, Clone, Copy)]
 pub struct ICAOAddress(pub(crate) u8, pub(crate) u8, pub(crate) u8);
 
+impl Into<[u8; 3]> for ICAOAddress {
+    fn into(self) -> [u8; 3] {
+        [self.0, self.1, self.2]
+    }
+}
+
 impl fmt::Display for ICAOAddress {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{:02X}{:02X}{:02X}", self.0, self.1, self.2)
